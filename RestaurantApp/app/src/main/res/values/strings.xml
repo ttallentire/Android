@@ -2,7 +2,10 @@
 <resources>
 
     <string name="app_name">RestaurantApp</string>
+    <string name="hello_world">Hello world</string>
     <string name="title">Restaurant App</string>
     <string name="action_settings">Settings</string>
+    <string name="settings_button">Settings</string>
+    <string name="randomize_button">Randomize</string>
 
 </resources>
