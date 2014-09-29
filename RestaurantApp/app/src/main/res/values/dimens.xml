@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="menu_button_size">115dp</dimen>
     <dimen name="menu_spinner_margin">40dp</dimen>
+    <dimen name="randomize">10dp</dimen>
+
 </resources>
