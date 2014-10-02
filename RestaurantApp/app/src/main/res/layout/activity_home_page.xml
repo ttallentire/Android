@@ -30,7 +30,7 @@
             android:layout_marginRight="@dimen/menu_spinner_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerMain"
             android:layout_centerVertical="true" />
     </RelativeLayout>
     <RelativeLayout

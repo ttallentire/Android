@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.80"
+        android:background="#FF0000">
+
+        <Spinner
+            android:layout_marginLeft="@dimen/rand_spinner_margin"
+            android:layout_marginRight="@dimen/rand_spinner_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerRand1"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.20"
+        android:background="#00FF00">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rand_text_height"
+            android:text="@string/rand_text_randPage"
+            android:textAlignment="center"
+            android:textSize="@dimen/rand_text_size"
+            android:id="@+id/textRand"
+            android:layout_marginLeft="@dimen/rand_text_margin"
+            android:layout_marginRight="@dimen/rand_text_margin"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:clickable="false"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -7,5 +7,6 @@
     <string name="action_settings">Settings</string>
     <string name="settings_button">Settings</string>
     <string name="randomize_button">Randomize</string>
+    <string name="rand_text_randPage">Shake to Randomize</string>
 
 </resources>
