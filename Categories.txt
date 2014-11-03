@@ -1,0 +1,13 @@
+Categories of Restaurants:
+
+    Italian
+    Chinese
+    Korean
+    Cantonese
+    Steakhouse
+    Thai
+    Indian
+    Burger
+    Fast-Food
+    Japanese
+    
