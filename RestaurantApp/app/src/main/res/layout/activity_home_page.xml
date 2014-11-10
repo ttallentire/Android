@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/spinnerMain"
             android:layout_centerVertical="true" />
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
