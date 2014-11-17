@@ -24,7 +24,7 @@ public class SQLiteHelper  extends SQLiteOpenHelper
 
     static
     {
-        TABLE_REVIEWS  = "names";
+        TABLE_REVIEWS  = "reviews";
         COLUMN_ID    = "_ID";
         COLUMN_LAT = "latitude";
         COLUMN_LNG = "longitude";
@@ -36,9 +36,9 @@ public class SQLiteHelper  extends SQLiteOpenHelper
         DATABASE_VERSION = 1;
         DATABASE_CREATE = "create table " +
                 TABLE_REVIEWS + "(" + COLUMN_ID + " integer primary key autoincrement, " + COLUMN_LAT +
-                " latitude, " + COLUMN_LNG + " longitude, " + COLUMN_TITLE + " title, " +
-                COLUMN_COMMENT + " comment, " + COLUMN_CATEGORY + " category, " +
-                COLUMN_RATING + " rating);";
+                " integer, " + COLUMN_LNG + " integer, " + COLUMN_TITLE + " text, " +
+                COLUMN_COMMENT + " text, " + COLUMN_CATEGORY + " text, " +
+                COLUMN_RATING + " integer);";
 
     }
 

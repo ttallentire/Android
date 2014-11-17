@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 public class HomePage extends Activity {
 
+    private String category = "any";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,8 @@ public class HomePage extends Activity {
     public void initSpinner()
     {
         Spinner spinner = (Spinner) findViewById(R.id.spinnerMain);
+        SpinnerMainListener listener = new SpinnerMainListener();
+        listener.setActivity(this);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.categories, android.R.layout.simple_spinner_item);
@@ -50,13 +53,17 @@ public class HomePage extends Activity {
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new SpinnerMainListener());
+        spinner.setOnItemSelectedListener(listener);
     }
 
-    public void goToMaps(View view)
+    public void setCategory(String cat)
     {
+        category = cat;
+    }
+
+    public void startMap(View view) {
         Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-        //intent.putExtra("category", parent.getItemIdAtPosition(position));
+        intent.putExtra("category", category);
         startActivity(intent);
     }
 

@@ -23,15 +23,16 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        long catNo;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         datasource = new ReviewDataSource(this);
         datasource.open();
 
-        catNo = savedInstanceState.getLong("category");
-        category = getResources().getStringArray(R.array.categories)[(int)catNo];
-        all = savedInstanceState.getBoolean("all");
+        if (savedInstanceState != null) {
+            category = savedInstanceState.getString("category");
+        } else {
+            category = "Italian";
+        }
         setUpMapIfNeeded();
 
         mMap.setOnMapLongClickListener(this);
@@ -90,13 +91,15 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
     private void setUpMap()
     {
         List<Review> reviews;
-        if (!all) {
+        if (!category.equals("Any")) {
             reviews = datasource.getReviews(category);
         } else {
             reviews = datasource.getAllReviews();
         }
-        for (Review r : reviews)
-            mMap.addMarker(r.getMarker());
+        if (reviews != null) {
+            for (Review r : reviews)
+                mMap.addMarker(r.getMarker());
+        }
     }
 
     @Override

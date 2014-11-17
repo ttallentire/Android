@@ -1,5 +1,6 @@
 package com.tmtech.restaurantapp;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -9,16 +10,19 @@ import android.widget.Toast;
  */
 public class SpinnerMainListener implements AdapterView.OnItemSelectedListener
 {
+    private HomePage activity;
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        //Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-        //intent.putExtra("category", parent.getItemIdAtPosition(position));
-        //startActivity(intent);
+        /*Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+        intent.putExtra("category", parent.getItemIdAtPosition(position));
+        startActivity(intent);*/
 
-        Toast.makeText(parent.getContext(),
-                "On Item Select : \n" + parent.getItemAtPosition(position).toString(),
-                Toast.LENGTH_LONG).show();
+        activity.setCategory(parent.getItemAtPosition(position).toString());
+    }
+
+    public void setActivity(HomePage act) {
+        activity = act;
     }
 
     @Override
