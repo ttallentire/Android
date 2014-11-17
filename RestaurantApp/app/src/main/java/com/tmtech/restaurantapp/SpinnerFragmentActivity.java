@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 /**
  * Created by MrChimick on 2014-11-10.
  */
-public class SpinnerMainActivity extends Activity implements AdapterView.OnItemSelectedListener
+public class SpinnerFragmentActivity extends Activity implements AdapterView.OnItemSelectedListener
 {
     /*public void initSpinner()
     {
@@ -28,12 +29,11 @@ public class SpinnerMainActivity extends Activity implements AdapterView.OnItemS
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-        Bundle b = new Bundle();
-        b.putLong("category", parent.getItemIdAtPosition(position));
-        b.putBoolean("all", false);
-        intent.putExtras(b);
-        startActivity(intent);
+        long catNo;
+        String category;
+        catNo = parent.getItemIdAtPosition(position);
+        category = getResources().getStringArray(R.array.categories)[(int)catNo];
+        ((TextView)findViewById(R.id.category)).setText(category);
     }
 
     @Override

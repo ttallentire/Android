@@ -23,5 +23,13 @@
     </string-array>
 
     <string name="title_activity_maps">Map of Restaurants</string>
+    <string name="marker_title1">Title:</string>
+    <string name="marker_title2">Title(Unique)</string>
+    <string name="marker_rating1">Rating:</string>
+    <string name="marker_rating2">0..5</string>
+    <string name="marker_comment1">Comment:</string>
+    <string name="marker_comment2">Your comment here.</string>
+    <string name="marker_category">Italian</string>
+    <string name="marker_button">Save</string>
 
 </resources>

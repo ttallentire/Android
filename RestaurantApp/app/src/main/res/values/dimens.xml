@@ -9,5 +9,7 @@
     <dimen name="rand_text_height">30dp</dimen>
     <dimen name="rand_text_size">20dp</dimen>
     <dimen name="randomize">10dp</dimen>
+    <dimen name="marker_marg_top">45dp</dimen>
+    <dimen name="marker_marg_left">35dp</dimen>
 
 </resources>

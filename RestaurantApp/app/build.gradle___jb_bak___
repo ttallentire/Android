@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.tmtech.restaurantapp"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 17
         versionCode 1
         versionName "1.0"

@@ -1,5 +1,6 @@
 package com.tmtech.restaurantapp;
 
+import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -8,24 +9,47 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity
-{
+import java.util.List;
 
+public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLongClickListener
+{
+    private ReviewDataSource datasource;
+    private String category;
+    private boolean all;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private MakeMarkerFragment markerFragment;
+    private LatLng curMarkerPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        long catNo;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        datasource = new ReviewDataSource(this);
+        datasource.open();
+
+        catNo = savedInstanceState.getLong("category");
+        category = getResources().getStringArray(R.array.categories)[(int)catNo];
+        all = savedInstanceState.getBoolean("all");
         setUpMapIfNeeded();
+
+        mMap.setOnMapLongClickListener(this);
+        markerFragment = MakeMarkerFragment.newInstance(this);
     }
 
     @Override
     protected void onResume()
     {
+        datasource.open();
         super.onResume();
         setUpMapIfNeeded();
+    }
+
+    @Override
+    protected void onPause() {
+        datasource.close();
+        super.onPause();
     }
 
     /**
@@ -65,6 +89,27 @@ public class MapsActivity extends FragmentActivity
      */
     private void setUpMap()
     {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        List<Review> reviews;
+        if (!all) {
+            reviews = datasource.getReviews(category);
+        } else {
+            reviews = datasource.getAllReviews();
+        }
+        for (Review r : reviews)
+            mMap.addMarker(r.getMarker());
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+        curMarkerPos = latLng;
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .show(markerFragment)
+                .commit();
+    }
+
+    public void createMarker(String title, short rating, String comment, String category) {
+        datasource.createReview(title, rating, comment, category, curMarkerPos);
     }
 }
