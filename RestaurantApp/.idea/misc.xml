@@ -98,10 +98,8 @@
       <Port>5050</Port>
     </configuration>
   </component>
-=======
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\MrChimick\AppData\Roaming\Subversion</configuration>
   </component>
->>>>>>> origin/DatabaseReviews
 </project>
 
