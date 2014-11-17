@@ -33,6 +33,14 @@
             android:id="@+id/spinnerMain"
             android:layout_centerVertical="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/spinnerMain"
+            android:id="@+id/spinnerBtn"
+            android:layout_centerVertical="true"
+            android:onClick="goToMaps"/>
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -61,6 +69,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="50dp"
             android:minWidth="@dimen/menu_button_size"
-            android:minHeight="@dimen/menu_button_size" />
+            android:minHeight="@dimen/menu_button_size"
+            android:onClick="goToConfig"/>
     </RelativeLayout>
 </LinearLayout>

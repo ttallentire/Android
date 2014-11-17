@@ -10,6 +10,8 @@
     <string name="rand_text_randPage">Shake to Randomize</string>
 
     <string-array name="categories">
+        <item>Any</item>
+        <item>Vietnamese</item>
         <item>Italian</item>
         <item>Chinese</item>
         <item>Korean</item>

@@ -1,9 +1,11 @@
 package com.tmtech.restaurantapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -14,7 +16,7 @@ public class HomePage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        //initSpinner();
+        initSpinner();
     }
 
 
@@ -39,7 +41,6 @@ public class HomePage extends Activity {
 
     public void initSpinner()
     {
-        SpinnerMainActivity spinnerMainActivity = new SpinnerMainActivity();
         Spinner spinner = (Spinner) findViewById(R.id.spinnerMain);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -49,7 +50,19 @@ public class HomePage extends Activity {
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(spinnerMainActivity);
+        spinner.setOnItemSelectedListener(new SpinnerMainListener());
+    }
+
+    public void goToMaps(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+        //intent.putExtra("category", parent.getItemIdAtPosition(position));
+        startActivity(intent);
+    }
+
+    public void goToConfig(View view)
+    {
+        setContentView(R.layout.activity_config_page);
     }
 
 }
