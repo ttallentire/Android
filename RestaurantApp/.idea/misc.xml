@@ -98,8 +98,5 @@
       <Port>5050</Port>
     </configuration>
   </component>
-  <component name="SvnConfiguration">
-    <configuration>C:\Users\MrChimick\AppData\Roaming\Subversion</configuration>
-  </component>
 </project>
 

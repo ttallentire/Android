@@ -1,13 +1,13 @@
 package com.tmtech.restaurantapp;
 
 import android.app.FragmentManager;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
@@ -28,15 +28,23 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
         datasource = new ReviewDataSource(this);
         datasource.open();
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null)
+        {
             category = savedInstanceState.getString("category");
         } else {
             category = "Italian";
         }
         setUpMapIfNeeded();
 
-        mMap.setOnMapLongClickListener(this);
-        markerFragment = MakeMarkerFragment.newInstance(this);
+        try
+        {
+            mMap.setOnMapLongClickListener(this);
+            markerFragment = MakeMarkerFragment.newInstance(this);
+        }
+        catch (Exception e)
+        {
+            Log.d("MapsActivity", " OnCreate error");
+        }
     }
 
     @Override
