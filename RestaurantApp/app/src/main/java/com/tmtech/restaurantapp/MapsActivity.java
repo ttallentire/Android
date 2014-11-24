@@ -1,6 +1,7 @@
 package com.tmtech.restaurantapp;
 
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -14,6 +15,7 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLongClickListener
 {
     private ReviewDataSource datasource;
+    SharedPreferences prefs = null;
     private String category;
     private boolean all;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
@@ -25,8 +27,14 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        prefs = getSharedPreferences("com.tmtech.restaurantapp", MODE_PRIVATE);
         datasource = new ReviewDataSource(this);
         datasource.open();
+
+        if (prefs.getBoolean("firstrun", true)) {
+            addFirstCats();
+            prefs.edit().putBoolean("firstrun", false).apply();
+        }
 
         if (savedInstanceState != null)
         {
@@ -52,6 +60,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
     {
         datasource.open();
         super.onResume();
+
         setUpMapIfNeeded();
     }
 
@@ -59,6 +68,17 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
     protected void onPause() {
         datasource.close();
         super.onPause();
+    }
+
+    private void addFirstCats() {
+        String[] category;
+        LatLng latLng = new LatLng(0, 0);
+        category = getResources().getStringArray(R.array.categories);
+
+        for (String s : category) {
+            Log.d("Category", s);
+            datasource.createReview("", (short)0, "", s, latLng);
+        }
     }
 
     /**

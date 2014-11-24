@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -30,7 +31,10 @@ public class ReviewDataSource {
                         SQLiteHelper.COLUMN_ID,
                         SQLiteHelper.COLUMN_LAT,
                         SQLiteHelper.COLUMN_LNG,
-                        SQLiteHelper.COLUMN_TITLE
+                        SQLiteHelper.COLUMN_TITLE,
+                        SQLiteHelper.COLUMN_COMMENT,
+                        SQLiteHelper.COLUMN_CATEGORY,
+                        SQLiteHelper.COLUMN_RATING
                 };
     }
 
@@ -51,6 +55,7 @@ public class ReviewDataSource {
 
     public Review createReview(String title, short rating, String comment, String category, LatLng latLng)
     {
+        Log.d("Creating", "Review " + category);
         final ContentValues values;
         Cursor cursor = null;
         Review newReview;
@@ -81,7 +86,7 @@ public class ReviewDataSource {
         return (newReview);
     }
 
-    public void deleteReview(final Review review)
+    /*public void deleteReview(final Review review)
     {
         final long id;
 
@@ -90,7 +95,7 @@ public class ReviewDataSource {
         database.delete(SQLiteHelper.TABLE_REVIEWS,
                 SQLiteHelper.COLUMN_ID + " = " + id,
                 null);
-    }
+    }*/
 
     public List<Review> getAllReviews()
     {
@@ -131,13 +136,14 @@ public class ReviewDataSource {
 
     public List<Review> getReviews(String category)
     {
+        Log.d("Check", "Beginning getReviews");
         final List<Review>    reviews;
         final Cursor        cursor;
 
         reviews = new ArrayList<Review>();
         cursor   = database.query(SQLiteHelper.TABLE_REVIEWS,
                 allColumns,
-                SQLiteHelper.COLUMN_CATEGORY + " = " + category,
+                SQLiteHelper.COLUMN_CATEGORY /*+ " = " + category*/,
                 null,
                 null,
                 null,
