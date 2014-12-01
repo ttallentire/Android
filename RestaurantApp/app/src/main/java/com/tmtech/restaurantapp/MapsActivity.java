@@ -1,21 +1,29 @@
 package com.tmtech.restaurantapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLongClickListener
+public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLongClickListener, LocationListener
 {
     public static ReviewDataSource datasource;
     SharedPreferences prefs = null;
@@ -23,6 +31,10 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
     private boolean all;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private static LatLng curMarkerPos;
+    private LocationManager locationManager;
+    private Location location;
+    private static final long MIN_TIME = 400;
+    private static final float MIN_DISTANCE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +52,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
         }
 
         category = "Any";
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER
         setUpMapIfNeeded();
         initSpinner();
 
@@ -114,6 +128,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
      */
     private void setUpMapIfNeeded()
     {
+        Location location;
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
@@ -121,6 +136,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
                     .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
+                mMap.setMyLocationEnabled(true);
+                moveToSelf(mMap.getMyLocation());
                 setUpMap();
             }
         }
@@ -143,8 +160,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
         }
         if (reviews != null) {
             for (Review r : reviews) {
-                if (!r.getMarker().getTitle().equals(""))
+                 if (!r.getComment().equals("")) {
                     mMap.addMarker(r.getMarker());
+                }
             }
         }
     }
@@ -184,4 +202,32 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
         Intent intent = new Intent(getApplicationContext(), HomePage.class);
         startActivity(intent);
     }
+
+    private void moveToSelf(Location location) {
+        try {
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
+            mMap.animateCamera(cameraUpdate);
+            locationManager.removeUpdates(this);
+        } catch(NullPointerException e) {
+            Toast.makeText(getApplicationContext(), "Could not get location", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location loc) {
+        LatLng latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
+        mMap.animateCamera(cameraUpdate);
+        locationManager.removeUpdates(this);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) { }
+
+    @Override
+    public void onProviderEnabled(String provider) { }
+
+    @Override
+    public void onProviderDisabled(String provider) { }
 }

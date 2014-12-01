@@ -66,7 +66,7 @@ public class Review {
     @Override
     public String toString() {
         String s;
-        s = "Name: " + getMarker().getTitle() + "\nRating: " + getRating() + "\nComment: " + getComment();
+        s = "Name: " + getMarker().getTitle();
         return s;
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RestaurantApp</string>
-    <string name="title">Restaurant App</string>
+    <string name="app_name">RestaurantAmnesia</string>
+    <string name="title">Restaurant Amnesia</string>
     <string name="titleButton">Start Map</string>
     <string name="action_settings">Settings</string>
     <string name="delete_button">Remove Reviews</string>

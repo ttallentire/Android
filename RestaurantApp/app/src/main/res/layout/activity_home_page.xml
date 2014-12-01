@@ -3,19 +3,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#ADEAEA">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4">
-        <ImageView
-            android:layout_width="87dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:text="@string/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:textSize="35sp"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

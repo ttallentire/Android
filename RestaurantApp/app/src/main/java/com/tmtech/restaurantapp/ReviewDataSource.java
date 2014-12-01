@@ -174,10 +174,17 @@ public class ReviewDataSource {
     {
         final Review review;
         final MarkerOptions marker;
+        String markerTitle = "";
 
+        markerTitle = cursor.getString(3) + "\n";
+        for (int i = 0; i < cursor.getShort(6); i++)
+            markerTitle += "\u2605";
+        for (int i = 5; i > cursor.getShort(6); i--)
+            markerTitle += "\u2606";
+        markerTitle += "\n" + cursor.getString(4);
         marker = new MarkerOptions()
                 .position(new LatLng(cursor.getFloat(1), cursor.getFloat(2)))
-                .title(cursor.getString(3));
+                .title(markerTitle);
         review = new Review(cursor.getString(4), cursor.getString(5),
                 cursor.getShort(6), marker);
         review.setId(cursor.getLong(0));

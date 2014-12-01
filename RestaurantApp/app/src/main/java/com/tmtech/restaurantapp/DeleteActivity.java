@@ -91,7 +91,7 @@ public class DeleteActivity extends ListActivity {
         adapter = new ArrayAdapter<Review>(this,
                 android.R.layout.simple_list_item_1);
         for (Review r : list) {
-            if (!r.getMarker().getTitle().equals(""))
+            if (!r.getComment().equals(""))
                 adapter.add(r);
         }
         setListAdapter(adapter);
