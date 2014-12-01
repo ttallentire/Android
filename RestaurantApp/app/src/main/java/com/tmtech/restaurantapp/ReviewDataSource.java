@@ -86,7 +86,7 @@ public class ReviewDataSource {
         return (newReview);
     }
 
-    /*public void deleteReview(final Review review)
+    public void deleteReview(final Review review)
     {
         final long id;
 
@@ -95,7 +95,7 @@ public class ReviewDataSource {
         database.delete(SQLiteHelper.TABLE_REVIEWS,
                 SQLiteHelper.COLUMN_ID + " = " + id,
                 null);
-    }*/
+    }
 
     public List<Review> getAllReviews()
     {
@@ -136,14 +136,13 @@ public class ReviewDataSource {
 
     public List<Review> getReviews(String category)
     {
-        Log.d("Check", "Beginning getReviews");
         final List<Review>    reviews;
         final Cursor        cursor;
 
         reviews = new ArrayList<Review>();
         cursor   = database.query(SQLiteHelper.TABLE_REVIEWS,
                 allColumns,
-                SQLiteHelper.COLUMN_CATEGORY /*+ " = " + category*/,
+                SQLiteHelper.COLUMN_CATEGORY + " LIKE '" + category + "'",
                 null,
                 null,
                 null,
@@ -161,7 +160,6 @@ public class ReviewDataSource {
                 reviews.add(review);
                 cursor.moveToNext();
             }
-
         }
         finally
         {

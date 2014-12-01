@@ -4,4 +4,23 @@
     android:layout_height="match_parent"
     android:id="@+id/map"
     tools:context="com.tmtech.restaurantapp.MapsActivity"
-    android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    android:name="com.google.android.gms.maps.SupportMapFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Spinner
+            android:layout_marginLeft="@dimen/menu_spinner_margin"
+            android:layout_marginRight="@dimen/menu_spinner_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerMain"
+            android:layout_centerVertical="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/spinnerMain"
+            android:text="To Home"
+            android:textColor="#000"
+            android:onClick="toHome"/>
+    </RelativeLayout>
+    </fragment>

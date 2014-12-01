@@ -19,15 +19,11 @@ public class HomePage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-        initSpinner();
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home_page, menu);
         return true;
     }
@@ -39,9 +35,6 @@ public class HomePage extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -49,37 +42,15 @@ public class HomePage extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void initSpinner()
-    {
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerMain);
-        SpinnerMainListener listener = new SpinnerMainListener();
-        listener.setActivity(this);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.categories, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(listener);
-    }
-
-    public void setCategory(String cat)
-    {
-        category = cat;
-    }
-
     public void startMap(View view) {
         Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-        intent.putExtra("category", category);
         startActivity(intent);
     }
 
-    public void goToConfig(View view)
+    public void goToDelete(View view)
     {
-        setContentView(R.layout.activity_config_page);
+        Intent intent = new Intent(getApplicationContext(), DeleteActivity.class);
+        startActivity(intent);
     }
 
 }

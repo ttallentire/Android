@@ -5,14 +5,14 @@
 
     To get one, follow this link, follow the directions and press "Create" at the end:
 
-https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=9E:D9:32:9F:72:4A:4D:75:B6:B1:3E:98:D3:D5:CA:6B:53:E3:04:04%3Bcom.tmtech.restaurantapp
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=59:E2:24:D8:B2:E2:FD:BE:11:0E:D5:8E:5D:31:81:0B:5B:D9:1A:92;com.tmtech.restaurantapp
 
     You can also add your credentials to an existing key, using this line:
-    9E:D9:32:9F:72:4A:4D:75:B6:B1:3E:98:D3:D5:CA:6B:53:E3:04:04;com.tmtech.restaurantapp
+    59:E2:24:D8:B2:E2:FD:BE:11:0E:D5:8E:5D:31:81:0B:5B:D9:1A:92;com.tmtech.restaurantapp
 
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
     --></string>
 
-    <string name="google_maps_key" templateMergeStrategy="preserve">YOUR_KEY_HERE</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyBoJxdIK5A7mbmIxEH8LHENVRDYcI1fC8A</string>
 </resources>

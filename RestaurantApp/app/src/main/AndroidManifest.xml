@@ -27,6 +27,15 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MakeMarker"
+            android:label="@string/title_activity_make_marker" >
+        </activity>
+        <activity
+            android:name=".DeleteActivity"
+            android:label="@string/title_activity_delete" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

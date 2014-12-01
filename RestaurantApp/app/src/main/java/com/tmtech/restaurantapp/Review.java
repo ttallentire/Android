@@ -62,4 +62,11 @@ public class Review {
     public void setMarker(MarkerOptions m) {
         marker = m;
     }
+
+    @Override
+    public String toString() {
+        String s;
+        s = "Name: " + getMarker().getTitle() + "\nRating: " + getRating() + "\nComment: " + getComment();
+        return s;
+    }
 }
